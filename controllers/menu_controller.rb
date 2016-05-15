@@ -8,12 +8,13 @@ class MenuController
     end
     
     def main_menu
-        puts "Main Menu - #{address_book.entries.count} entries"
+        puts "Main Menu - #{address_book.entries.count} entries "
         puts "1 - View all entries"
         puts "2 - Create an entry"
         puts "3 - Search for an entry"
         puts "4 - Import entries from a CSV"
-        puts "5 - Exit"
+        puts "5 - View Entry Number"
+        puts "6 - Exit"
         print "Enter your selection: "
         
         selection = gets.to_i
@@ -36,6 +37,10 @@ class MenuController
                 read_csv
                 main_menu
             when 5
+                system "clear"
+                view_entry_n
+                main_menu
+            when 6
                 puts "Good-bye!"
                 exit(0)
             else
@@ -80,6 +85,26 @@ class MenuController
         
     end
     
+    def view_entry_n
+       print "Enter the entry number: "
+       n = gets.chomp
+    
+       if n.to_i.to_s != n  # non-integers return 0
+           puts "Invalid entry. Please try again."
+           view_entry_n
+       end
+       
+       n = n.to_i - 1  # so users can use natural numbers 
+       
+       if ( n < 0 ) || ( n > ( address_book.entries.length - 1 ) )
+        puts "I cannot find that entry. Please try again"
+        view_entry_n
+       end
+       
+       puts address_book.entries[n].to_s
+       main_menu
+    end
+    
     def entry_submenu(entry)
        puts "n - next entry"
        puts "d - delete entry"
@@ -91,6 +116,7 @@ class MenuController
        case selection
         when "n"
         when "d"
+        when "e"
         when "m"
             system "clear"
             main_menu
@@ -98,7 +124,7 @@ class MenuController
         else
             system "clear"
             puts "#{selection} is not a valid input"
-            entry_sumbenu(entry)
+            entry_submenu(entry)
         end
     end
 end
