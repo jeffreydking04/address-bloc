@@ -8,7 +8,7 @@ class MenuController
     end
     
     def main_menu
-        puts "Main Menu - #{address_book.entries.count} entries"
+        puts "Main Menu - #{address_book.entries.count} entries "
         puts "1 - View all entries"
         puts "2 - Create an entry"
         puts "3 - Search for an entry"
@@ -16,7 +16,6 @@ class MenuController
         puts "5 - View Entry Number"
         puts "6 - Exit"
         print "Enter your selection: "
-        
         selection = gets.to_i
         
         case selection
@@ -56,7 +55,6 @@ class MenuController
             puts entry.to_s
             entry_submenu(entry)
         end
-        
         system "clear"
         puts "End of entries"
     end
@@ -90,11 +88,9 @@ class MenuController
             puts "Invalid entry. Please try again."
             view_entry_n
         end
-       
-n = n.to_i - 1  # so users can use natural numbers 
-       
+        n = n.to_i - 1  # so users can use natural numbers 
         if ( n < 0 ) || ( n > ( address_book.entries.length - 1 ) )
-            puts "Entry not found. Please try again"
+            puts "I cannot find that entry. Please try again"
             view_entry_n
         end
         puts address_book.entries[n].to_s
@@ -107,7 +103,7 @@ n = n.to_i - 1  # so users can use natural numbers
         puts "e - edit this entry"
         puts "m - return to main_menu"
         selection = gets.chomp
-       
+
         case selection
         when "n"
         when "d"
