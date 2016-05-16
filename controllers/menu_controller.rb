@@ -16,38 +16,37 @@ class MenuController
         puts "5 - View Entry Number"
         puts "6 - Exit"
         print "Enter your selection: "
-        
         selection = gets.to_i
         
         case selection
-            when 1 
-                system "clear"
-                view_all_entries
-                main_menu
-            when 2
-                system "clear"
-                create_entry
-                main_menu
-            when 3
-                system "clear"
-                search_entries
-                main_menu
-            when 4 
-                system "clear"
-                read_csv
-                main_menu
-            when 5
-                system "clear"
-                view_entry_n
-                main_menu
-            when 6
-                puts "Good-bye!"
-                exit(0)
-            else
-                system "clear"
-                puts "Sorry, that is not a valid input"
-                main_menu
-            end
+        when 1 
+            system "clear"
+            view_all_entries
+            main_menu
+        when 2
+            system "clear"
+            create_entry
+            main_menu
+        when 3
+            system "clear"
+            search_entries
+            main_menu
+        when 4 
+            system "clear"
+            read_csv
+            main_menu
+        when 5
+            system "clear"
+            view_entry_n
+            main_menu
+        when 6
+            puts "Good-bye!"
+            exit(0)
+        else
+            system "clear"
+            puts "Sorry, that is not a valid input"
+            main_menu
+        end
     end
     
     def view_all_entries
@@ -56,25 +55,22 @@ class MenuController
             puts entry.to_s
             entry_submenu(entry)
         end
-        
         system "clear"
         puts "End of entries"
     end
     
     def create_entry
-       system "clear"
-       puts "New AddressBloc Entry"
-       print "Name: "
-       name = gets.chomp
-       print "Phone number: "
-       phone = gets.chomp
-       print "Email: "
-       email = gets.chomp
-       
-       address_book.add_entry(name, phone, email)
-       
-       system "clear"
-       puts "new entry created"
+        system "clear"
+        puts "New AddressBloc Entry"
+        print "Name: "
+        name = gets.chomp
+        print "Phone number: "
+        phone = gets.chomp
+        print "Email: "
+        email = gets.chomp
+        address_book.add_entry(name, phone, email)
+        system "clear"
+        puts "new entry created"
     end
     
     def search_entries
@@ -86,41 +82,35 @@ class MenuController
     end
     
     def view_entry_n
-       print "Enter the entry number: "
-       n = gets.chomp
-    
-       if n.to_i.to_s != n  # non-integers return 0
-           puts "Invalid entry. Please try again."
-           view_entry_n
-       end
-       
-       n = n.to_i - 1  # so users can use natural numbers 
-       
-       if ( n < 0 ) || ( n > ( address_book.entries.length - 1 ) )
-        puts "I cannot find that entry. Please try again"
-        view_entry_n
-       end
-       
-       puts address_book.entries[n].to_s
-       main_menu
+        print "Enter the entry number: "
+        n = gets.chomp
+        if n.to_i.to_s != n  # non-integers return 0
+            puts "Invalid entry. Please try again."
+            view_entry_n
+        end
+        n = n.to_i - 1  # so users can use natural numbers 
+        if ( n < 0 ) || ( n > ( address_book.entries.length - 1 ) )
+            puts "I cannot find that entry. Please try again"
+            view_entry_n
+        end
+        puts address_book.entries[n].to_s
+        main_menu
     end
     
     def entry_submenu(entry)
-       puts "n - next entry"
-       puts "d - delete entry"
-       puts "e - edit this entry"
-       puts "m - return to main_menu"
-       
-       selection = gets.chomp
-       
-       case selection
+        puts "n - next entry"
+        puts "d - delete entry"
+        puts "e - edit this entry"
+        puts "m - return to main_menu"
+        selection = gets.chomp
+
+        case selection
         when "n"
         when "d"
         when "e"
         when "m"
             system "clear"
             main_menu
-            
         else
             system "clear"
             puts "#{selection} is not a valid input"
